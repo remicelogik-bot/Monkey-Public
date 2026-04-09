@@ -44,8 +44,8 @@ Respecter cette structure dans l'ordre. Adapter la densité selon la complexité
 - Logo Monkey Lab (variant selon fond)
 - Titre de la fiche (grand, gras, couleur #23429F ou #E6A911)
 - Sous-titre : "Guide pratique — Niveau débutant"
-- Date de création / version
-- monkey-lab.fr | hello@monkey-lab.fr
+- Date de création : utiliser le mois et l'année réels de la conversation (ex. Avril 2026)
+- Auteur : Rémi Chambouvet | hello@monkey-lab.fr | monkey-lab.fr
 
 ### SECTION 1 — C'est quoi ?
 - Définition claire et simple du sujet (2–3 paragraphes max)
@@ -142,7 +142,29 @@ Utiliser un langage direct, à la 2e personne du pluriel (vous).
 
 ---
 
-## 4. Format DOCX — Instructions techniques
+## 4. Règles mise en page — Anti-orphelins (OBLIGATOIRE)
+
+Chaque titre H1 doit avoir `pageBreakBefore: true` (sauf le tout premier après la couverture).
+Chaque titre H1 et H2 doit avoir `keepNext: true` pour rester collé à son premier paragraphe.
+Les encadrés `callout` doivent avoir `keepLines: true` pour ne pas être coupés entre deux pages.
+
+```javascript
+// H1 : saut de page + collé au suivant
+new Paragraph({
+  heading: HeadingLevel.HEADING_1,
+  pageBreakBefore: true,  // ← saut de page avant chaque section
+  keepNext: true,         // ← colle le titre à son 1er paragraphe
+  children: [...]
+})
+// H2 : collé au suivant uniquement (pas de saut de page)
+new Paragraph({
+  heading: HeadingLevel.HEADING_2,
+  keepNext: true,
+  children: [...]
+})
+```
+
+## 5. Format DOCX — Instructions techniques
 
 Consulter le skill `docx` pour la génération technique. Points critiques pour ce skill :
 
